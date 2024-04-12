@@ -39,7 +39,7 @@ public class Application
     {
         CreateAction("Quit", (_, _) => { _app.Quit(); }, ["<Ctrl>Q"]);
         CreateAction("About", (_, _) => { OnAboutAction(); });
-        CreateAction("Preferences", (_, _) => { OnAboutAction(); }, ["<Ctrl>comma"]);
+        CreateAction("Preferences", (_, _) => { OnPreferencesAction(); }, ["<Ctrl>comma"]);
     }
     
     private void OnAboutAction()
