@@ -3,20 +3,20 @@
     <PropertyGroup>
       <PackageType>Template</PackageType>
       <PackageVersion>0.1</PackageVersion>
-      <PackageId>DitherWither.GirCoreTemplates</PackageId>
-      <Title>DitherWither's GirCore Templates</Title>
-      <Authors>DitherWither</Authors>
+      <PackageId>TenderOwl.GirCoreTemplate.CSharp</PackageId>
+      <Title>GirCore Templates</Title>
+      <Authors>TenderOwl</Authors>
       <Description>Templates to use when creating an application using Gircore</Description>
-      <PackageTags>dotnet-new;templates;gircore;gobject;gtk;gnome</PackageTags>
+      <PackageTags>dotnet-new;templates;gircore;gobject;gtk;gnome;flatpak;</PackageTags>
       <PackageReadmeFile>README.md</PackageReadmeFile>
-      <PackageProjectURL>https://ditherwither.github.io/gircore-blueprint-template/</PackageProjectURL>
+      <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
       <PackageReleaseNotes>First release</PackageReleaseNotes>
 
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
-      <RepositoryUrl>https://github.com/DitherWither/gircore-blueprint-template.git</RepositoryUrl>
+      <RepositoryUrl>https://github.com/tenderowl/gircore-blueprint-template.git</RepositoryUrl>
       <RepositoryType>git</RepositoryType>
 
-      <TargetFramework>net7.0</TargetFramework>
+      <TargetFramework>net8.0</TargetFramework>
   
       <IncludeContentInPack>true</IncludeContentInPack>
       <IncludeBuildOutput>false</IncludeBuildOutput>

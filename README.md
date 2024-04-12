@@ -1,29 +1,23 @@
-# A Template for making GTK applications using gircore
+# A Template for making GTK applications using Gir.Core
 
-This template is a starting point for making GTK applications using gircore,
-and [blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index.html).
+This template is a starting point for making GTK applications using [Gir.Core](https://github.com/gircore/gir.core),
+and [Blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index.html).
 
 ## Installing
 
 - Install the latest version of the [dotnet sdk](https://dotnet.microsoft.com/en-us/download)
 - Install the [blueprint compiler](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index.html).
-- Install this template using `dotnet new install DitherWither.GirCoreTemplates`
-
+- Install this template using `dotnet new install TenderOwl.GirCoreTemplate.CSharp`
 
 ## Steps for using
 
 Create a new project using:
 
 ```bash
-dotnet new gircore-blueprint --app-id com.example.MyApp --display-name "My app"
+dotnet new gnome-gircore --app-id com.example.MyApp --display-name "My app" --developer-name "Tender Owl"
 ```
 
-replacing `com.example.MyApp` with an app id follows the reverse domain name format.
+## Run with GNOME Builder
 
-See [the documentation for app id on gnome docs](https://developer.gnome.org/documentation/tutorials/application-id.html). Also replace `My app` with the name of your application.
-
-
-
-# TODO for this template
-
-- [ ] Add icons and appdata files to the template.
+- Open folder in Builder
+- Press `Shift+Ctrl+Space` or `Run Project` button
