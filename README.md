@@ -14,7 +14,11 @@ and [Blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index
 Create a new project using:
 
 ```bash
-dotnet new gnome-gircore --app-id com.example.MyApp --display-name "My app" --developer-name "Tender Owl"
+dotnet new gnome-gircore \
+  --app-id com.example.MyApp \
+  --display-name "My app" \
+  --developer-name "Tender Owl" \
+  -o MyApp
 ```
 
 ## Run with GNOME Builder
