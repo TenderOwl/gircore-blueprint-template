@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/flatpak/flatpak-builder/master/data/flatpak-manifest.schema.json": "file:///home/vardhan/Projects/csharp/gircore/gircore-blueprint-template/template/__APP_ID__.yml"
-    }
-}

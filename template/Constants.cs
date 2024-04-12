@@ -1,3 +1,5 @@
+namespace __APP_NAME__;
+
 public static class Constants
 {
     /// <summary>The application ID that is used to identify your application,

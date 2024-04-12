@@ -1,10 +1,17 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Vardhan Patil (@DitherWither)",
-  "classifications": [  "gobject", "gircore", "gnome", "gtk", "blueprint" ], // TODO: Actually see what classifications are available
-  "identity": "DitherWither.GirCoreTemplates.BlueprintApp",
-  "name": "Gircore With Gtk Blueprint App",
-  "shortName": "gircore-blueprint",
+  "author": "Andrey Maksimov (@amka)",
+  "classifications": [
+    "gobject",
+    "gircore",
+    "gnome",
+    "gtk",
+    "blueprint",
+    "flatpak"
+  ],
+  "identity": "TenderOwl.GirCoreTemplate.CSharp",
+  "name": "Gnome GirCore Application",
+  "shortName": "gnome-gircore",
   "sourceName": "__APP_NAME__",
   "tags": {
     "language": "C#",
@@ -13,16 +20,23 @@
   "symbols": {
     "app-id": {
       "type": "parameter",
+      "datatype": "text",
       "description": "The application id, see https://developer.gnome.org/documentation/tutorials/application-id.html",
-      "replaces": "__APP_ID__", 
+      "replaces": "__APP_ID__",
       "isRequired": true,
-      "fileRename": "__APP_ID__" // So that the flatpak manifest is renamed to the app-id
+      "fileRename": "__APP_ID__"
     },
     "display-name": {
       "type": "parameter",
       "description": "The display name of the application, used in various places like the header bar",
       "replaces": "__DISPLAY_NAME__",
       "isRequired": true
+    },
+    "DeveloperName": {
+      "type": "parameter",
+      "description": "The name of the developer",
+      "replaces": "__DEVELOPER_NAME__",
+      "isRequired": false
     }
   }
 }

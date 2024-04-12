@@ -12,7 +12,15 @@ and [blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/index
 
 ## Steps for using
 
-Create a new project using `dotnet new gircore-blueprint --app-id com.example.MyApp --display-name "My app"`, replacing `com.example.MyApp` with an app id follows the reverse domain name format. See [the documentation for app id on gnome docs](https://developer.gnome.org/documentation/tutorials/application-id.html). Also replace `My app` with the name of your application.
+Create a new project using:
+
+```bash
+dotnet new gircore-blueprint --app-id com.example.MyApp --display-name "My app"
+```
+
+replacing `com.example.MyApp` with an app id follows the reverse domain name format.
+
+See [the documentation for app id on gnome docs](https://developer.gnome.org/documentation/tutorials/application-id.html). Also replace `My app` with the name of your application.
 
 
 

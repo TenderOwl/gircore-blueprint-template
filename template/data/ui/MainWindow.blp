@@ -1,0 +1,58 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ApplicationWindow main_window {
+  default-width: 800;
+  default-height: 600;
+  width-request: 360;
+  height-request: 360;
+
+  title: "__DISPLAY_NAME__";
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      [end]
+      MenuButton {
+        tooltip-text: _("Main Menu");
+        icon-name: "view-more-symbolic";
+        menu-model: primary_menu;
+        primary: true;
+      }
+    }
+
+    Box {
+      orientation: vertical;
+      valign: center;
+
+      Label {
+        label: "Hello, World!";
+
+        styles [
+          "title-1"
+        ]
+      }
+
+      Label {
+        label: "This is a starting point for \"__DISPLAY_NAME__\".";
+        margin-top: 12;
+      }
+    }
+  }
+}
+
+menu primary_menu {
+  section {
+    item (_("Preferences"), "app.preferences")
+  }
+
+  section {
+    item (_("Keyboard Shortcuts"), "app.keyboardShortcuts")
+    item (_("Help"), "app.help")
+    item (_("About __DISPLAY_NAME__"), "app.about")
+  }
+
+  section {
+    item (_("Quit"), "app.quit")
+  }
+}

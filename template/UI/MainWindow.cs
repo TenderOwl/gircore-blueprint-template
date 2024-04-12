@@ -1,4 +1,4 @@
-namespace ui;
+namespace __APP_NAME__.UI;
 
 public class MainWindow : Adw.ApplicationWindow
 {
