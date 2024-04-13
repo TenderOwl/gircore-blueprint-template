@@ -32,11 +32,35 @@
       "replaces": "__DISPLAY_NAME__",
       "isRequired": true
     },
-    "DeveloperName": {
+    "developer-name": {
       "type": "parameter",
       "description": "The name of the developer",
       "replaces": "__DEVELOPER_NAME__",
-      "isRequired": false
+      "isRequired": false,
+      "defaultValue": "Developer Name"
+    },
+    "year": {
+      "type": "generated",
+      "generator": "now",
+      "parameters": {
+        "format": "yyyy"
+      },
+      "replaces": "__YEAR__"
+    },
+    "resources-path": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "replaces": "__RESOURCES_PATH__",
+      "parameters": {
+        "source": "app-id",
+        "steps": [
+          {
+            "regex": "\\.",
+            "replacement": "/"
+          }
+        ]
+      }
     }
   }
 }

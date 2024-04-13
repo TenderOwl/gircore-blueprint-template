@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Application
-# TODO Replace with a more user friendly name
 Name=__DISPLAY_NAME__
 Exec=__APP_NAME__
-# TODO: add icon
+Icon=__APP_ID__
+Terminal=false
+Categories=GTK;
+StartupNotify=true

@@ -51,7 +51,7 @@ public class Application
         about.DeveloperName = "__DEVELOPER_NAME__";
         about.Version = "0.1.0";
         about.Developers = ["__DEVELOPER_NAME__"];
-        about.Copyright = "© 2024 __DEVELOPER_NAME__";
+        about.Copyright = "© __YEAR__ __DEVELOPER_NAME__";
         about.Present();
     }
 

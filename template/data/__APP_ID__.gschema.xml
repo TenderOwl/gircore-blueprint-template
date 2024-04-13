@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="__APP_NAME__">
+    <schema id="__APP_ID__" path="/__RESOURCES_PATH__/">
+    </schema>
+</schemalist>

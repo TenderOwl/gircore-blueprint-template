@@ -39,7 +39,8 @@
     },
     {
       "name": "__APP_NAME__",
-      "buildsystem": "simple",
+      "buildsystem": "meson",
+      "builddir": true,
       "build-options": {
         "arch": {
           "aarch64": {
@@ -54,11 +55,6 @@
           }
         }
       },
-      "build-commands": [
-        "mkdir -p /app/bin",
-        "dotnet publish __APP_NAME__.csproj -c Release --runtime $RUNTIME",
-        "cp -r --remove-destination bin/Release/net8.0/$RUNTIME/publish/* /app/bin/"
-      ],
       "sources": [
         "nuget-sources.json",
         {

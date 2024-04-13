@@ -2,7 +2,7 @@
 
     <PropertyGroup>
       <PackageType>Template</PackageType>
-      <PackageVersion>0.1</PackageVersion>
+      <PackageVersion>0.2</PackageVersion>
       <PackageId>TenderOwl.GirCoreTemplate.CSharp</PackageId>
       <Title>GirCore Templates</Title>
       <Authors>TenderOwl</Authors>
