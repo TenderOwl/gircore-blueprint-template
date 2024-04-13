@@ -10,7 +10,7 @@
       <PackageTags>dotnet-new;templates;gircore;gobject;gtk;gnome;flatpak;</PackageTags>
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
-      <PackageReleaseNotes>First release</PackageReleaseNotes>
+      <PackageReleaseNotes>Add support of gresource and meson.build.</PackageReleaseNotes>
 
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <RepositoryUrl>https://github.com/tenderowl/gircore-blueprint-template.git</RepositoryUrl>
