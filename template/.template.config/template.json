@@ -37,7 +37,7 @@
       "description": "The name of the developer",
       "replaces": "__DEVELOPER_NAME__",
       "isRequired": false,
-      "defaultValue": "Developer Name"
+      "defaultValue": "DeveloperName"
     },
     "year": {
       "type": "generated",
