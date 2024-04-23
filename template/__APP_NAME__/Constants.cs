@@ -20,4 +20,10 @@ public static class Constants
     /// This should be automatically replaced when the application is created.
     /// </summary>
     public const string APP_DISPLAY_NAME = "__DISPLAY_NAME__";
+
+    /// <summary>
+    /// The display name of the application.
+    /// This should be automatically replaced when the application is created.
+    /// </summary>
+    public const string RESOURCES_PATH = "/app/share/__APP_NAME__/__APP_ID__.gresource";
 }

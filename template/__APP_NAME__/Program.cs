@@ -10,6 +10,12 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        // Required to load DLLs properly
+        Gio.Module.Initialize();
+
+        var resource = Gio.Resource.Load(RESOURCES_PATH);
+        resource.Register();
+
         var services = CreateServices();
         
         var app = services.GetRequiredService<Application>();

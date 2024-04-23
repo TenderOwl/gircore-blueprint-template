@@ -1,6 +1,13 @@
+gnome.compile_resources(app_id,
+  app_id + '.gresource.xml',
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
+)
+
 desktop_file = i18n.merge_file(
-        input: app_id + '.Desktop.in',
-       output: app_id + '.Desktop',
+        input: app_id + '.desktop.in',
+       output: app_id + '.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,

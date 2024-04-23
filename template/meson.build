@@ -8,14 +8,12 @@ app_id = '__APP_ID__'
 
 i18n = import('i18n')
 gnome = import('gnome')
-prefix = get_option('prefix') # should be /usr
-bindir = get_option('bindir') # should be bin
-datadir = get_option('datadir') # should be /usr/share
-pkgdatadir = join_paths(prefix, datadir, meson.project_name())
-moduledir = join_paths(pkgdatadir, meson.project_name())
-localedir = join_paths(prefix, get_option('localedir'))
 
-subdir('__APP_NAME__')
+pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
+moduledir = pkgdatadir / meson.project_name()
+localedir = get_option('prefix') / get_option('localedir')
+
+subdir(meson.project_name())
 subdir('data')
 subdir('po')
 
