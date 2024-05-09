@@ -2,7 +2,7 @@
 
     <PropertyGroup>
       <PackageType>Template</PackageType>
-      <PackageVersion>0.4</PackageVersion>
+      <PackageVersion>0.5</PackageVersion>
       <PackageId>TenderOwl.GirCoreTemplate.CSharp</PackageId>
       <Title>GirCore Templates</Title>
       <Authors>TenderOwl</Authors>
@@ -10,7 +10,11 @@
       <PackageTags>dotnet-new;templates;gircore;gobject;gtk;gnome;flatpak;</PackageTags>
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
-      <PackageReleaseNotes>Add compiled GResources.</PackageReleaseNotes>
+      <PackageReleaseNotes>
+        0.5
+        - Updated to Gir.Core-0.5.0
+        - Check for Flatpak environment to load resources properly
+      </PackageReleaseNotes>
 
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
       <RepositoryUrl>https://github.com/tenderowl/gircore-blueprint-template.git</RepositoryUrl>
