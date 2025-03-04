@@ -12,6 +12,7 @@
       <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
       <PackageReleaseNotes>
         0.6
+        - Updated to .NET 9.0
         - Updated to Gir.Core-0.6.3
         - Check for Flatpak environment to load resources properly
       </PackageReleaseNotes>
