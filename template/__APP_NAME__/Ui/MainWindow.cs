@@ -2,7 +2,7 @@ namespace __APP_NAME__.UI;
 
 public class MainWindow : Adw.ApplicationWindow
 {
-    private MainWindow(Gtk.Builder builder, string name) : base(new ApplicationWindowHandle(builder.GetPointer(name), false))
+    private MainWindow(Gtk.Builder builder, string name) : base(new Adw.Internal.ApplicationWindowHandle(builder.GetPointer(name), false))
     {
         builder.Connect(this);
 
