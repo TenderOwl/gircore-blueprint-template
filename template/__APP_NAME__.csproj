@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="gircore.Adw-1" Version="0.6.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.5" />
   </ItemGroup>
 
   <Target Name="BlueprintBuild" BeforeTargets="PrepareForBuild;Restore">
@@ -21,6 +21,9 @@
       Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/data/ui $(MSBuildProjectDirectory)/data/ui/*.blp" />
   </Target>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="glib-compile-resources --sourcedir $(MSBuildProjectDirectory)/data $(MSBuildProjectDirectory)/data/__APP_ID__.gresource.xml --target=$(MSBuildProjectDirectory)/__APP_ID__.gresource" />
+  </Target>
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">
     <!-- Remove obj folder -->
