@@ -16,7 +16,6 @@ Create a new project using:
 ```bash
 dotnet new gnome-gircore \
   --app-id com.example.MyApp \
-  --display-name "My app" \
   --developer-name "Tender Owl" \
   -o MyApp
 ```
