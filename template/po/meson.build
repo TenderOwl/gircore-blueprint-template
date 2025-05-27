@@ -1,1 +1,1 @@
-i18n.gettext('papperpie', preset: 'glib')
+i18n.gettext('__APP_NAME__', preset: 'glib')
