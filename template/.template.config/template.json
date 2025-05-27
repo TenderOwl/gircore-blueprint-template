@@ -27,10 +27,11 @@
       "fileRename": "__APP_ID__"
     },
     "display-name": {
-      "type": "parameter",
+      "type": "derived",
       "description": "The display name of the application, used in various places like the header bar",
       "replaces": "__DISPLAY_NAME__",
-      "isRequired": true
+      "valueSource": "name",
+      "valueTransform": "titleCase"
     },
     "developer-name": {
       "type": "parameter",
@@ -61,6 +62,11 @@
           }
         ]
       }
+    }
+  },
+  "forms" : {
+    "titleCase": {
+      "identifier": "titleCase"
     }
   }
 }

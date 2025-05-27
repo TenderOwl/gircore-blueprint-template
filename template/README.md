@@ -1,4 +1,4 @@
-# **DISPLAY_NAME**
+# **__DISPLAY_NAME__**
 
 This readme was generated automatically by the template generator.
 

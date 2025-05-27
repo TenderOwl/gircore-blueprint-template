@@ -4,6 +4,7 @@ using Gio;
 using GObject;
 using Microsoft.Extensions.Logging;
 using __APP_NAME__.UI;
+using File = System.IO.File;
 
 namespace __APP_NAME__;
 
@@ -25,6 +26,24 @@ public class Application
     {
         // Run the application
         _app.RunWithSynchronizationContext(args);
+    }
+    
+    /// <summary>
+    /// Loads the necessary resources for the application.
+    /// This function attempts to load resources from different locations based on the environment.
+    /// If the application is running as a Flatpak, it loads resources from the Flatpak environment.
+    /// Otherwise, it tries to load the resources from the program directory or standard system paths.
+    /// </summary>
+    private static void LoadResources()
+    {
+        var resourcePath = Environment.GetEnvironmentVariable("FLATPAK_ID") != null
+            ? RESOURCES_PATH
+            : Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, $"{APP_ID}.gresource"));
+        
+        if (!File.Exists(resourcePath)) return;
+
+        var resource = Resource.Load(resourcePath);
+        resource.Register();
     }
 
     private void OnActivate(Gio.Application application, EventArgs eventArgs)

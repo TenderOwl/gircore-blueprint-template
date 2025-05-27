@@ -13,13 +13,6 @@ public class Program
         // Required to load DLLs properly
         Gio.Module.Initialize();
 
-        // Try to load resources only if the app runs as Flatpak
-        if (Environment.GetEnvironmentVariable("FLATPAK_ID") != null)
-        {
-            var resource = Gio.Resource.Load(RESOURCES_PATH);
-            resource.Register();            
-        }
-
         var services = CreateServices();
         
         var app = services.GetRequiredService<Application>();
