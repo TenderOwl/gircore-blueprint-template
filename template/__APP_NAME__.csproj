@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="gircore.Adw-1" Version="0.6.3" />
+    <PackageReference Include="gircore.Adw-1" Version="0.7.0-preview.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.5" />
   </ItemGroup>
@@ -21,8 +23,12 @@
       Command="blueprint-compiler batch-compile $(MSBuildProjectDirectory)/build/ $(MSBuildProjectDirectory)/data/ui $(MSBuildProjectDirectory)/data/ui/*.blp" />
   </Target>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="glib-compile-resources --sourcedir $(MSBuildProjectDirectory)/data $(MSBuildProjectDirectory)/data/__APP_ID__.gresource.xml --target=$(MSBuildProjectDirectory)/__APP_ID__.gresource" />
+  <Target Name="CompileResources" AfterTargets="BlueprintBuild">
+    <Exec Command="glib-compile-resources --sourcedir $(MSBuildProjectDirectory)/data $(MSBuildProjectDirectory)/data/__APP_ID__.gresource.xml --target=$(MSBuildProjectDirectory)/build/__APP_ID__.gresource" />
+  </Target>
+
+  <Target Name="CopyCompiledResources" AfterTargets="CompileResources">
+    <Copy SourceFiles="build/__APP_ID__.gresource" DestinationFolder="$(OutDir)" />
   </Target>
 
   <Target Name="ExtraCleanup" AfterTargets="Clean">
@@ -41,5 +47,9 @@
     <EmbeddedResource Include="build\*.ui">
       <LogicalName>%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="__APP_ID__.gresource" />
   </ItemGroup>
 </Project>

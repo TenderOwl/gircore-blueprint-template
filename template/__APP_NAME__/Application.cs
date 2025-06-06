@@ -3,31 +3,49 @@ global using static __APP_NAME__.Constants;
 using Gio;
 using GObject;
 using Microsoft.Extensions.Logging;
-using __APP_NAME__.UI;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using File = System.IO.File;
+using Task = System.Threading.Tasks.Task;
+using __APP_NAME__.UI;
 
 namespace __APP_NAME__;
 
-public class Application
+public class HostedApplication(
+    Adw.Application app,
+    IHostApplicationLifetime lifetime,
+    ILogger<HostedApplication> logger,
+    IServiceProvider serviceProvider
+) : IHostedService
 {
-    private readonly ILogger<Application> _logger;
-    private readonly Adw.Application _app;
     private MainWindow? _mainWindow;
-    
-    public Application(ILogger<Application> logger)
+
+    public Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger = logger;
-        _app = Adw.Application.New(APP_ID, ApplicationFlags.DefaultFlags);
-        _app.OnStartup += OnStartup;
-        _app.OnActivate += OnActivate;
+        // Load GTK resources
+        LoadResources();
+
+        // Register application event handlers
+        app.OnActivate += OnActivate;
+        app.OnStartup += OnStartup;
+
+        // Run GTK in a separate thread
+        Task.Run(() =>
+        {
+            try
+            {
+                app.RunWithSynchronizationContext([]);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "GTK application failed");
+                lifetime.StopApplication();
+            }
+        }, cancellationToken);
+
+        return Task.CompletedTask;
     }
 
-    public void Run(string[] args)
-    {
-        // Run the application
-        _app.RunWithSynchronizationContext(args);
-    }
-    
     /// <summary>
     /// Loads the necessary resources for the application.
     /// This function attempts to load resources from different locations based on the environment.
@@ -39,43 +57,61 @@ public class Application
         var resourcePath = Environment.GetEnvironmentVariable("FLATPAK_ID") != null
             ? RESOURCES_PATH
             : Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, $"{APP_ID}.gresource"));
-        
+
         if (!File.Exists(resourcePath)) return;
 
         var resource = Resource.Load(resourcePath);
         resource.Register();
     }
 
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Stopping GTK application...");
+
+        app.Quit();
+
+        lifetime.StopApplication();
+
+        logger.LogInformation("GTK application stopped");
+        return Task.CompletedTask;
+    }
+
     private void OnActivate(Gio.Application application, EventArgs eventArgs)
     {
-        // Create a new MainWindow and show it.
-        // The application is passed to the MainWindow so that it can be used
-        _mainWindow ??= new MainWindow((Adw.Application)application);
+        // Create a new scope for the MainWindow
+        using var scope = serviceProvider.CreateScope();
+
+        // Resolve MainWindow from the scope
+        _mainWindow ??= scope.ServiceProvider.GetRequiredService<MainWindow>();
+
+        // Handle window events
+        _mainWindow.OnDestroy += (s, e) => logger.LogDebug("Closing main window...");
+
         _mainWindow.Present();
     }
 
     private void OnStartup(Gio.Application application, EventArgs eventArgs)
     {
-        CreateAction("Quit", (_, _) => { _app.Quit(); }, ["<Ctrl>Q"]);
+        CreateAction("Quit", (_, _) => { StopAsync(CancellationToken.None); }, ["<Ctrl>Q"]);
         CreateAction("About", (_, _) => { OnAboutAction(); });
         CreateAction("Preferences", (_, _) => { OnPreferencesAction(); }, ["<Ctrl>comma"]);
     }
-    
+
     private void OnAboutAction()
     {
-        var about = Adw.AboutWindow.New();
-        about.TransientFor = _app.ActiveWindow;
+        var about = Adw.AboutDialog.New();
         about.ApplicationName = "__DISPLAY_NAME__";
         about.ApplicationIcon = "__APP_ID__";
         about.DeveloperName = "__DEVELOPER_NAME__";
         about.Version = "0.1.0";
         about.Developers = ["__DEVELOPER_NAME__"];
         about.Copyright = "© __YEAR__ __DEVELOPER_NAME__";
-        about.Present();
+        about.Present(_mainWindow);
     }
 
-    private void OnPreferencesAction() {
-        _logger.LogInformation("app.preferences action activated");
+    private void OnPreferencesAction()
+    {
+        logger.LogInformation("app.preferences action activated");
     }
 
     private void CreateAction(string name, SignalHandler<SimpleAction, SimpleAction.ActivateSignalArgs> callback,
@@ -84,11 +120,11 @@ public class Application
         var lowerName = name.ToLowerInvariant();
         var actionItem = SimpleAction.New(lowerName, null);
         actionItem.OnActivate += callback;
-        _app.AddAction(actionItem);
-        
+        app.AddAction(actionItem);
+
         if (shortcuts is { Length: > 0 })
         {
-            _app.SetAccelsForAction($"app.{lowerName}", shortcuts);
+            app.SetAccelsForAction($"app.{lowerName}", shortcuts);
         }
     }
 }

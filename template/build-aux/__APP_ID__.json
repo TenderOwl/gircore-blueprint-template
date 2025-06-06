@@ -1,7 +1,7 @@
 {
   "app-id": "__APP_ID__",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "47",
+  "runtime-version": "48",
   "sdk": "org.gnome.Sdk",
   "command": "__APP_NAME__",
   "sdk-extensions": [

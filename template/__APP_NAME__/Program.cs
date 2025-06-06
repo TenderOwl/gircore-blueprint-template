@@ -1,35 +1,33 @@
 ﻿// This will make all the constants available in the global namespace, 
 // so you can use them without the Constants prefix.
+
 global using static __APP_NAME__.Constants;
+using Gio;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using __APP_NAME__;
+using __APP_NAME__.UI;
 
-namespace __APP_NAME__;
 
-public class Program
-{
-    public static void Main(string[] args)
+var builder = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
     {
-        // Required to load DLLs properly
-        Gio.Module.Initialize();
+        // Регистрируем GTK Application
+        services.AddLogging();
+        services.AddSingleton<Adw.Application>(s =>
+        {
+            var app = Adw.Application.New(APP_ID, ApplicationFlags.DefaultFlags);
+            return app;
+        });
 
-        var services = CreateServices();
-        
-        var app = services.GetRequiredService<Application>();
-        app.Run(args);
-    }
-    
-    private static ServiceProvider CreateServices()
-    {
-        var serviceProvider = new ServiceCollection()
-            .AddLogging(builder =>
-            {
-                builder.ClearProviders();
-                builder.AddConsole();
-            })
-            .AddSingleton<Application>()
-            .BuildServiceProvider();
+        // Регистрируем главное окно
+        services.AddTransient<MainWindow>();
 
-        return serviceProvider;
-    }
-}
+        // Регистрируем кастомный сервис
+        services.AddHostedService<HostedApplication>();
+    })
+    .UseConsoleLifetime(opts => opts.SuppressStatusMessages = true);
+
+var host = builder.Build();
+
+await host.RunAsync();
