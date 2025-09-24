@@ -24,6 +24,8 @@ public class HostedApplication(
     {
         // Load GTK resources
         LoadResources();
+        // Uncomment if you use custom css
+        // InitializeStyles();
 
         // Register application event handlers
         app.OnActivate += OnActivate;
@@ -54,14 +56,25 @@ public class HostedApplication(
     /// </summary>
     private static void LoadResources()
     {
-        var resourcePath = Environment.GetEnvironmentVariable("FLATPAK_ID") != null
-            ? RESOURCES_PATH
-            : Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, $"{APP_ID}.gresource"));
+        var resourcePath = Environment.GetEnvironmentVariable("FLATPAK_ID") switch
+        {
+            null => Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, $"{APP_ID}.gresource")),
+            _ => RESOURCES_PATH,
+        };
 
         if (!File.Exists(resourcePath)) return;
 
         var resource = Resource.Load(resourcePath);
         resource.Register();
+    }
+
+    private void InitializeStyles()
+    {
+        var cssProvider = Gtk.CssProvider.New();
+        cssProvider.LoadFromResource($"{RESOURCES_PATH}/styles.css");
+        var display = Gdk.Display.GetDefault();
+        if (display == null) return;
+        Gtk.StyleContext.AddProviderForDisplay(display, cssProvider, Gtk.Constants.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

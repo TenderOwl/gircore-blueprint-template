@@ -24,3 +24,11 @@ dotnet new gnome-gircore \
 
 - Open folder in Builder
 - Press `Shift+Ctrl+Space` or `Run Project` button
+
+Or build with command line:
+
+```bash
+flatpak-builder build-dir --user --force-clean --install --repo=repo --arch=linux-x64 build-aux/<APP_ID>.yaml
+```
+
+See the [flatpak dotnet guide](https://docs.flatpak.org/en/latest/dotnet.html) for more information.

@@ -2,7 +2,7 @@
 
     <PropertyGroup>
       <PackageType>Template</PackageType>
-      <PackageVersion>0.7.0-preview.1</PackageVersion>
+      <PackageVersion>0.7.0-preview.2</PackageVersion>
       <PackageId>TenderOwl.GirCoreTemplate.CSharp</PackageId>
       <Title>GirCore Templates</Title>
       <Authors>TenderOwl</Authors>
@@ -11,13 +11,11 @@
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
       <PackageReleaseNotes>
-        0.7.0-Preview.1
+        0.7.0-Preview.2
         - Updated to .NET 9.0
-        - Updated to Gir.Core-0.7.0-preview.1
-        - GNOME Runtime is set to 48
-        - Uses ServiceCollection to create services
-        - Replace AboutWindow with AboutDialog
-        - Check for Flatpak environment to load resources properly
+        - Updated to Gir.Core-0.7.0-preview.2
+        - Update manifest according to the Flatpak Dotnet guide
+        - Install app resources properly
       </PackageReleaseNotes>
 
       <PackageLicenseExpression>MIT</PackageLicenseExpression>

@@ -12,6 +12,15 @@ To run this project, run the following commands:
 dotnet run
 ```
 
+Or build with command line:
+
+```bash
+flatpak-builder build-dir --user --force-clean --install --repo=repo --arch=linux-x64 build-aux/<APP_ID>.yaml
+```
+
+See the [flatpak dotnet guide](https://docs.flatpak.org/en/latest/dotnet.html) for more information.
+
+
 ### Project Structure
 
 The file structure of this project is as follows:

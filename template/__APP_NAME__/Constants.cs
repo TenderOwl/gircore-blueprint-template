@@ -26,4 +26,10 @@ public static class Constants
     /// This should be automatically replaced when the application is created.
     /// </summary>
     public const string RESOURCES_PATH = "/app/share/__APP_NAME__/__APP_ID__.gresource";
+
+    /// <summary>
+    /// The prefix for the resources.
+    /// This should be automatically replaced when the application is created.
+    /// </summary>
+    public const string RESOURCE_PREFIX = "__RESOURCES_PATH__";
 }
