@@ -2,7 +2,7 @@
 
     <PropertyGroup>
       <PackageType>Template</PackageType>
-      <PackageVersion>0.7.0-preview.2</PackageVersion>
+      <PackageVersion>0.7.0-preview.3</PackageVersion>
       <PackageId>TenderOwl.GirCoreTemplate.CSharp</PackageId>
       <Title>GirCore Templates</Title>
       <Authors>TenderOwl</Authors>
@@ -11,9 +11,9 @@
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <PackageProjectURL>https://github.com/tenderowl/gircore-blueprint-template/</PackageProjectURL>
       <PackageReleaseNotes>
-        0.7.0-Preview.2
+        0.7.0-Preview.3
         - Updated to .NET 9.0
-        - Updated to Gir.Core-0.7.0-preview.2
+        - Updated to Gir.Core-0.7.0-preview.3
         - Update manifest according to the Flatpak Dotnet guide
         - Install app resources properly
       </PackageReleaseNotes>
@@ -23,18 +23,18 @@
       <RepositoryType>git</RepositoryType>
 
       <TargetFramework>net9.0</TargetFramework>
-  
+
       <IncludeContentInPack>true</IncludeContentInPack>
       <IncludeBuildOutput>false</IncludeBuildOutput>
       <NoWarn>$(NoWarn);NU5128</NoWarn>
       <ContentTargetFolders>content</ContentTargetFolders>
       <NoDefaultExcludes>true</NoDefaultExcludes>
     </PropertyGroup>
-  
+
     <ItemGroup>
       <Content Include="template/**/*" Exclude="template/bin/**;template/obj/**;template/build/**; template/flatpak_build/**" />
-      <Compile Remove="**/*" />
+      <Compile Remove="**/*" /
       <None Include="README.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
-  
+
   </Project>
